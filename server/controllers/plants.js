@@ -23,3 +23,17 @@ export const getFamily = (req, res) => {
       console.log(err);
     });
 };
+
+export const plantsInFamily = (req, res) => {
+  console.log(req.params.id);
+  PlantsBasics.find()
+    // .limit(20)
+    .then((result) => {
+      const family = req.params.id;
+      const plantsRes = result.filter((item) => item.family === family);
+      res.send(plantsRes);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
